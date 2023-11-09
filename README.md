@@ -24,7 +24,13 @@ pip install pipx
 First run the command:
 
 ```shell
-pipx run cookiecutter gh:collective/cookiecutter-plone
+pipx run cookiecutter gh:plone/cookiecutter-plone
+```
+
+And choose a template:
+```
+  [1/1] Select a template
+    1 - Plone Add-on
 ```
 
 | Template | Description |  |
