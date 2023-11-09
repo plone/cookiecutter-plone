@@ -52,7 +52,9 @@ setup(
         "setuptools",
         "Plone",
         "plone.api",
-        "plone.restapi"
+        {%- if cookiecutter.feature_headless == '1' %}
+        "plone.restapi",
+        {%- endif %}
     ],
     extras_require={
         "test": [
