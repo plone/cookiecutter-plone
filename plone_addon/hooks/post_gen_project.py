@@ -89,9 +89,13 @@ def main():
     print(f"{MSG_DELIMITER}")
     msg = dedent(
         f"""
-        {_success('New distribution "{{ cookiecutter.addon_title }}" was generated')}
+        {_success('New addon "{{ cookiecutter.addon_title }}" was generated')}
 
-        Now, code it, push to your organization.
+        Now, enter the repositorym run the code formatter with:
+
+        make format
+
+        start coding, and push to your organization.
 
         Sorry for the convenience,
         The Plone Community.
