@@ -1,4 +1,4 @@
-[![Cookiecutter Plone Addon CI](https://github.com/plone/cookiecutter-plone/actions/workflows/ci.yml/badge.svg)](https://github.com/plone/cookiecutter-plone/actions/workflows/plone_addon.yml)
+[![Cookiecutter Plone Addon CI](https://github.com/plone/cookiecutter-plone/actions/workflows/plone_addon.yml/badge.svg)](https://github.com/plone/cookiecutter-plone/actions/workflows/plone_addon.yml)
 [![Built with Cookiecutter](https://img.shields.io/badge/built%20with-Cookiecutter-ff69b4.svg?logo=cookiecutter)](https://github.com/plone/cookiecutter-plone/)
 ![GitHub](https://img.shields.io/github/license/plone/cookiecutter-plone)
 [![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
