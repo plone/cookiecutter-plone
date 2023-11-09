@@ -1,0 +1,11 @@
+{
+    "template": [
+      "addon (./plone_addon)"
+    ],
+    "__prompts__": {
+      "template": {
+        "__prompt__": "Select a template",
+        "addon (./plone_addon)": "Plone Add-on"
+      }
+    }
+  }
