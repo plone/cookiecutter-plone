@@ -5,7 +5,7 @@
 
 # Cookiecutter Plone Addon
 
-Powered by [Cookiecutter](https://github.com/cookiecutter/cookiecutter), [Cookiecutter Plone Addon](https://github.com/plone/cookiecutter-plone/plone_addon) is intended to be used by Plone developers to create new addon paclages.
+Powered by [Cookiecutter](https://github.com/cookiecutter/cookiecutter), [Cookiecutter Plone Addon](https://github.com/plone/cookiecutter-plone/plone_addon) is intended to be used by Plone developers to create new addon packages.
 
 ## Getting Started 🏁
 
