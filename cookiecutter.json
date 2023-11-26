@@ -1,11 +1,9 @@
 {
-    "template": [
-      "addon (./plone_addon)"
-    ],
-    "__prompts__": {
-      "template": {
-        "__prompt__": "Select a template",
-        "addon (./plone_addon)": "Plone Add-on"
-      }
+  "templates": {
+    "addon": {
+      "path": "./plone_addon",
+      "title": "Plone Add-on",
+      "description": "Create a new Python Package for a Plone Add-on"
     }
   }
+}
