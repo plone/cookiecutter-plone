@@ -20,6 +20,13 @@
       directory="profiles/uninstall"
       />
 
+  <!-- Hide Uninstall Profile-->
+  <utility
+      factory=".setuphandlers.HiddenProfiles"
+      name="{{ cookiecutter.python_package_name }}"
+      />
+
+
   <include package=".upgrades" />
 
 </configure>
