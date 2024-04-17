@@ -31,8 +31,8 @@
   },
   "_copy_without_render": [],
   "_extensions": [
-    "local_extensions.pascal_case",
-    "local_extensions.package_name",
-    "local_extensions.package_namespace"
+    "cookieplone.filters.pascal_case",
+    "cookieplone.filters.package_name",
+    "cookieplone.filters.package_namespace"
   ]
 }

@@ -23,9 +23,8 @@ pip install pipx
 ### Generate Your Plone Addon 🎉
 
 ```shell
-pipx run cookiecutter gh:plone/cookiecutter-plone
+pipx run cookieplone plone_addon
 ```
-Then select the `Plone Add-on` template.
 
 
 ## Project Generation Options

@@ -24,18 +24,20 @@ pip install pipx
 First run the command:
 
 ```shell
-pipx run cookiecutter gh:plone/cookiecutter-plone
+pipx run cookieplone
 ```
 
 And choose a template:
 ```
   [1/1] Select a template
     1 - Plone Add-on
+    2 - Volto Add-on
 ```
 
 | Template | Description |  |
 | --------- | --------- | --------- |
 | `Plone Add-on`  | Creates a new addon to be used with Plone | [Read More](./plone_addon/README.md) |
+| `Volto Add-on`  | Creates a new addon to be used with Volto | [Read More](./volto_addon/README.md) |
 
 
 ## License 📜
