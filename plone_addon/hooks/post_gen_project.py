@@ -3,8 +3,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from cookieplone import utils
-
+from cookieplone.utils import console, rmtree
 
 # PATH OF CONTENT TO BE REMOVED
 TO_REMOVE_PATHS = {
@@ -18,7 +17,7 @@ def run_cmd(command: str, shell: bool, cwd: str) -> bool:
     proc = subprocess.run(command, shell=shell, cwd=cwd, capture_output=True)
     if proc.returncode:
         # Write errors to the main process stderr
-        utils.console.error(f"Error while running {command}")
+        console.error(f"Error while running {command}")
     return False if proc.returncode else True
 
 
@@ -31,21 +30,21 @@ def remove_files(category: str):
         path = base_path / filepath
         exists = path.exists()
         if exists and path.is_dir():
-            utils.rmtree(path)
+            rmtree(path)
         elif exists and path.is_file():
             path.unlink()
 
 
 def initialize_git():
     """Apply black and isort to the generated codebase."""
-    utils.console.info("Git repository")
+    console.info("Git repository")
     steps = [
         ["Initialize", ["git", "init", "."], False, "."],
         ["Add files", ["git", "add", "."], False, "."],
     ]
     for step in steps:
         msg, command, shell, cwd = step
-        utils.console.info(f" - {msg}")
+        console.info(f" - {msg}")
         result = run_cmd(command, shell=shell, cwd=cwd)
         if not result:
             sys.exit(1)
@@ -69,23 +68,9 @@ def main():
         Sorry for the convenience,
         The Plone Community.
     """
-    utils.console.panel(
-        title="New addon was generated",
-        subtitle="",
-        msg=msg,
-        url="https://plone.org/"
+    console.panel(
+        title="New addon was generated", subtitle="", msg=msg, url="https://plone.org/"
     )
-    msg = """
-
-        Now, enter the repositorym run the code formatter with:
-
-        make format
-
-        start coding, and push to your organization.
-
-        Sorry for the convenience,
-        The Plone Community.
-    """
 
 
 if __name__ == "__main__":

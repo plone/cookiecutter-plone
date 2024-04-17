@@ -2,18 +2,11 @@
 
 import re
 import sys
+from cookieplone.utils import console
 from pathlib import Path
 from textwrap import dedent
 from typing import List
 
-TERMINATOR = "\x1b[0m"
-WARNING = "\x1b[1;33m"
-INFO = "\x1b[1;34m"
-HINT = "\x1b[3;35m"
-SUCCESS = "\x1b[1;32m"
-ERROR = "\x1b[1;31m"
-MSG_DELIMITER = "=" * 80
-MSG_DELIMITER_2 = "-" * 80
 
 output_path = Path().resolve()
 
@@ -26,21 +19,6 @@ context = {
     "github_organization": "{{ cookiecutter.github_organization }}",
     "npm_package_name": "{{ cookiecutter.npm_package_name }}",
 }
-
-
-def _error(msg: str) -> str:
-    """Format error message."""
-    return f"{ERROR}{msg}{TERMINATOR}"
-
-
-def _success(msg: str) -> str:
-    """Format success message."""
-    return f"{SUCCESS}{msg}{TERMINATOR}"
-
-
-def _info(msg: str) -> str:
-    """Format info message."""
-    return f"{INFO}{msg}{TERMINATOR}"
 
 
 def validate_not_empty(value: str) -> str:
@@ -74,7 +52,7 @@ def check_errors(data: dict) -> List[str]:
         func = VALIDATORS.get(f"validate_{key}", validate_not_empty)
         error = func(value)
         if error:
-            errors.append(f"  - {key}: {_error(error)}")
+            errors.append(f"  - {key}: {error}")
     return errors
 
 
@@ -82,27 +60,24 @@ def main():
     """Validate context."""
     success = True
     value_errors = check_errors(context)
-    print("")
-
-    print(f"{ _info('{{ cookiecutter.addon_title }} generation')}")
-    print(f"{MSG_DELIMITER_2}")
     if value_errors:
-        print("Value errors prevent running cookiecutter")
+        msg = "Value errors prevent running cookiecutter:"
         for error in value_errors:
-            print(error)
+            msg = f"{msg}\n{error}"
         success = False
     else:
         msg = dedent(
             f"""
             Summary:
-              - Volto version: {_info('{{ cookiecutter.__version_plone_volto }}')}
-              - Output folder: {_info(output_path)}
+              - Volto version: [bold blue]{{ cookiecutter.__version_plone_volto }}[/bold blue]
+              - Output folder: [bold blue]{output_path}[/bold blue]
         """
         )
-
-        print(msg)
+    console.panel(
+        title = '{{ cookiecutter.addon_title }} generation',
+        msg=msg
+    )
     if not success:
-        print(f"{MSG_DELIMITER}")
         sys.exit(1)
 
 

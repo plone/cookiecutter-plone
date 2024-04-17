@@ -23,22 +23,22 @@ help: ## This help message
 clean: ## Clean
 	rm -rf volto-addon
 
-../bin/cookiecutter:  ## Cookiecutter installation
-	$(MAKE) -C ".." bin/cookiecutter
+../bin/cookieplone:  ## cookieplone installation
+	$(MAKE) -C ".." bin/cookieplone
 
 .PHONY: format
-format: ../bin/cookiecutter ## Format code
+format: ../bin/cookieplone ## Format code
 	@echo "$(GREEN)==> Formatting codebase $(RESET)"
-	../bin/black hooks local_extensions tests
-	../bin/isort hooks local_extensions tests
+	../bin/black hooks tests
+	../bin/isort hooks tests
 
 .PHONY: generate
-generate:  ../bin/cookiecutter ## Create a sample package
+generate:  ../bin/cookieplone ## Create a sample package
 	@echo "$(GREEN)==> Creating new test package$(RESET)"
 	rm -rf volto-addon
 	../bin/cookiecutter . --no-input
 
 .PHONY: test
-test: ../bin/cookiecutter ## Create a sample package and tests it
+test: ../bin/cookieplone ## Create a sample package and tests it
 	@echo "$(GREEN)==> Creating new test package$(RESET)"
 	../bin/python -m pytest tests

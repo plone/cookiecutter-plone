@@ -1,5 +1,6 @@
 """Test cookiecutter generation with features enabled."""
 import pytest
+
 from .conftest import PKG_SRC_FEATURE_HEADLESS, PKG_SRC_FILES, ROOT_FILES
 
 

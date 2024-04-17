@@ -10,7 +10,7 @@ RESET=`tput sgr0`
 YELLOW=`tput setaf 3`
 
 .PHONY: all
-all: bin/cookiecutter
+all: bin/cookieplone
 
 # Add the following 'help' target to your Makefile
 # And add help text after each target name starting with '\#\#'
@@ -22,20 +22,22 @@ help: ## This help message
 clean: ## Clean
 	rm -rf bin include lib lib64 pyvenv.cfg .Python
 
-bin/cookiecutter: ## Create virtualenv and install dependencies
+bin/cookieplone: ## Create virtualenv and install dependencies
 	@echo "$(GREEN)==> Setup Virtual Env$(RESET)"
 	python3 -m venv .
 	bin/pip install pip --upgrade
 	bin/pip install -r requirements.txt --upgrade
 
 .PHONY: format
-format: bin/cookiecutter ## Format code
+format: bin/cookieplone ## Format code
 	@echo "$(GREEN)==> Formatting codebase $(RESET)"
 	bin/black hooks
 	bin/isort hooks
 	$(MAKE) -C "./plone_addon/" format
+	$(MAKE) -C "./volto_addon/" format
 
 .PHONY: test
-test: bin/cookiecutter ## Test all cookiecutters
+test: bin/cookieplone ## Test all cookiecutters
 	@echo "$(GREEN)==> Test all cookiecutters$(RESET)"
 	$(MAKE) -C "./plone_addon/" test
+	$(MAKE) -C "./volto_addon/" test

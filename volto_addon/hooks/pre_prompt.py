@@ -1,38 +1,13 @@
 """Pre Prompt hook."""
-
-import subprocess
 import sys
 
-TERMINATOR = "\x1b[0m"
-WARNING = "\x1b[1;33m"
-INFO = "\x1b[1;34m"
-HINT = "\x1b[3;35m"
-SUCCESS = "\x1b[1;32m"
-ERROR = "\x1b[1;31m"
-MSG_DELIMITER = "=" * 80
-MSG_DELIMITER_2 = "-" * 80
-SEMVER_PATTERN = r"^(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)(?:-(?P<prerelease>(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+(?P<buildmetadata>[0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$"  # noQA
-PEP404_PATTERN = r"^(\d+!)?(\d+)(\.\d+)+([\.\-\_])?((a(lpha)?|b(eta)?|c|r(c|ev)?|pre(view)?)\d*)?(\.?(post|dev)\d*)?$"  # noQA
+try:
+    from cookieplone import data
+    from cookieplone.utils import commands, console, sanity
 
-
-def _error(msg: str) -> str:
-    """Format error message."""
-    return f"{ERROR}{msg}{TERMINATOR}"
-
-
-def _success(msg: str) -> str:
-    """Format success message."""
-    return f"{SUCCESS}{msg}{TERMINATOR}"
-
-
-def _warning(msg: str) -> str:
-    """Format warning message."""
-    return f"{WARNING}{msg}{TERMINATOR}"
-
-
-def _info(msg: str) -> str:
-    """Format info message."""
-    return f"{INFO}{msg}{TERMINATOR}"
+    HAS_COOKIEPLONE = True
+except ModuleNotFoundError:
+    HAS_COOKIEPLONE = False
 
 
 SUPPORTED_NODE_VERSIONS = [
@@ -74,44 +49,37 @@ def check_git_version() -> str:
     return "" if raw_version else "Git not found."
 
 
-def sanity_check() -> bool:
+def sanity_check() -> data.SanityCheckResults:
     """Run sanity checks on the system."""
-    checks = {
-        "Node": {"func": check_node_version, "level": "error"},
-        "git": {"func": check_git_version, "level": "warning"},
-    }
-    has_error = False
-    print("Sanity checks")
-    print(f"{MSG_DELIMITER_2}")
-    total_checks = len(checks)
-    for idx, (title, check_info) in enumerate(checks.items()):
-        func = check_info["func"]
-        status = func()
-        level = check_info["level"]
-        if not status:
-            msg = f"{_success('✓')}"
-        elif level == "error":
-            has_error = True
-            msg = f"{_error(status)}"
-        else:
-            msg = f"{_warning(status)}"
-        print(f"  [{idx+1}/{total_checks}] {title}: {msg}")
-    return not (has_error)
-
+    checks = [
+        data.SanityCheck(
+            "Node",
+            commands.check_node_version,
+            [SUPPORTED_NODE_VERSIONS],
+            "error",
+        ),
+        data.SanityCheck("git", commands.check_command_is_available, ["git"], "error"),
+    ]
+    result = sanity.run_sanity_checks(checks)
+    return result
 
 def main():
     """Validate context."""
-    print("")
-    print(f"{ _info('Cookiecutter Volto Add-on ')}")
-    print(f"{MSG_DELIMITER}")
-    print("")
-    if not sanity_check():
+    if not HAS_COOKIEPLONE:
+        print("This template should be run with cookieplone")
         sys.exit(1)
-    print("")
-    print(f"Add-on details")
-    print(f"{MSG_DELIMITER_2}")
-    print("")
 
+    check_results = sanity_check()
+    msg = "Creating a new Volto Addon"
+    for check in check_results.checks:
+        label = "green" if check.status else "red"
+        msg = f"{msg}\n  - {check.name}: [{label}]{check.message}[/{label}]"
+    console.panel(
+        title="Volto Addon",
+        msg=msg
+    )
+    if not check_results.status:
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
