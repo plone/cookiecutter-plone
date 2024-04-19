@@ -1,11 +1,11 @@
 """Pre generation hook."""
+
 import sys
-from cookieplone import data
-from cookieplone.utils import console
-from cookieplone.utils import validators
 from pathlib import Path
 from textwrap import dedent
 
+from cookieplone import data
+from cookieplone.utils import console, validators
 
 output_path = Path().resolve()
 
@@ -18,6 +18,7 @@ context = {
     "github_organization": "{{ cookiecutter.github_organization }}",
     "npm_package_name": "{{ cookiecutter.npm_package_name }}",
 }
+
 
 def check_errors(context: dict) -> data.ContextValidatorResult:
     """Check for errors in the provided data."""
@@ -46,7 +47,9 @@ def main():
             if validation.status:
                 continue
             label = "red"
-            msg = f"{msg}\n  - {validation.key}: [{label}]{validation.message}[/{label}]"
+            msg = (
+                f"{msg}\n  - {validation.key}: [{label}]{validation.message}[/{label}]"
+            )
     else:
         msg = dedent(
             f"""
@@ -57,10 +60,7 @@ def main():
 
         """
         )
-    console.panel(
-        title = '{{ cookiecutter.title }} generation',
-        msg=msg
-    )
+    console.panel(title="{{ cookiecutter.title }} generation", msg=msg)
     if not success:
         sys.exit(1)
 

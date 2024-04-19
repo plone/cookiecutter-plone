@@ -1,5 +1,10 @@
 {
   "templates": {
+    "project": {
+      "path": "./project",
+      "title": "Plone Project",
+      "description": "Create a new Plone project with backend and frontend"
+    },
     "plone_addon": {
       "path": "./plone_addon",
       "title": "Plone Add-on",

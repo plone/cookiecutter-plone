@@ -31,13 +31,20 @@ bin/cookieplone: ## Create virtualenv and install dependencies
 .PHONY: format
 format: bin/cookieplone ## Format code
 	@echo "$(GREEN)==> Formatting codebase $(RESET)"
-	bin/black hooks
-	bin/isort hooks
+	bin/black hooks .scripts
+	bin/isort hooks .scripts
 	$(MAKE) -C "./plone_addon/" format
 	$(MAKE) -C "./volto_addon/" format
+	$(MAKE) -C "./project/" format
 
 .PHONY: test
 test: bin/cookieplone ## Test all cookiecutters
 	@echo "$(GREEN)==> Test all cookiecutters$(RESET)"
 	$(MAKE) -C "./plone_addon/" test
 	$(MAKE) -C "./volto_addon/" test
+	$(MAKE) -C "./project/" test
+
+.PHONY: report-context
+report-context: bin/cookieplone ## Generate a report of all context options
+	@echo "$(GREEN)==> Generate a report of all context options$(RESET)"
+	bin/python .scripts/report_context.py

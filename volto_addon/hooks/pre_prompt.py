@@ -1,6 +1,7 @@
 """Pre Prompt hook."""
-from textwrap import dedent
+
 import sys
+from textwrap import dedent
 
 try:
     from cookieplone import data
@@ -34,6 +35,7 @@ def sanity_check() -> data.SanityCheckResults:
     result = sanity.run_sanity_checks(checks)
     return result
 
+
 def main():
     """Validate context."""
     if not HAS_COOKIEPLONE:
@@ -41,21 +43,21 @@ def main():
         sys.exit(1)
 
     check_results = sanity_check()
-    msg = dedent("""
+    msg = dedent(
+        """
         Creating a new Volto Addon
 
         Sanity check results:
 
-    """)
+    """
+    )
     for check in check_results.checks:
         label = "green" if check.status else "red"
         msg = f"{msg}\n  - {check.name}: [{label}]{check.message}[/{label}]"
-    console.panel(
-        title="Volto Addon Generator",
-        msg=f"{msg}\n"
-    )
+    console.panel(title="Volto Addon Generator", msg=f"{msg}\n")
     if not check_results.status:
         sys.exit(1)
+
 
 if __name__ == "__main__":
     main()

@@ -1,8 +1,10 @@
 """Pre Prompt hook."""
+
 import sys
 
 try:
-    from cookieplone import utils
+    from cookieplone.utils import console
+
     HAS_COOKIEPLONE = True
 except ModuleNotFoundError:
     HAS_COOKIEPLONE = False
@@ -14,7 +16,7 @@ def main():
         print("This template should be run with cookieplone")
         sys.exit(1)
     else:
-        utils.console.print_plone_banner()
+        console.print_plone_banner()
 
 
 if __name__ == "__main__":

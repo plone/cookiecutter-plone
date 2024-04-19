@@ -1,4 +1,5 @@
 """Post generation hook."""
+
 from cookieplone.utils import console
 
 
@@ -21,9 +22,8 @@ def main():
         title=":tada: New addon was generated :tada:",
         subtitle="",
         msg=msg,
-        url="https://plone.org/"
+        url="https://plone.org/",
     )
-
 
 
 if __name__ == "__main__":

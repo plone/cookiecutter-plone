@@ -4,5 +4,6 @@ isort
 pytest
 pytest-cookies
 pytest-jsonschema >= 1.0.0a2
-cookieplone@git+https://github.com/plone/cookieplone.git
+cookieplone>=0.4.1
+GitPython
 wheel

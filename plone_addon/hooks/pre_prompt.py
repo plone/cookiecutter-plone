@@ -1,4 +1,5 @@
 """Pre Prompt hook."""
+
 import sys
 
 try:
