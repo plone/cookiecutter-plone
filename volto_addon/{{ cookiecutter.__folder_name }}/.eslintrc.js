@@ -12,7 +12,7 @@ module.exports = {
           ['@plone/registry', './core/packages/registry/src'],
           [
             '{{ cookiecutter.npm_package_name }}',
-            './packages/{{ cookiecutter.addon_name }}/src',
+            './packages/{{ cookiecutter.volto_addon_name }}/src',
           ],
         ],
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],

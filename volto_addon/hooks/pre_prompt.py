@@ -1,4 +1,5 @@
 """Pre Prompt hook."""
+from textwrap import dedent
 import sys
 
 try:
@@ -17,36 +18,6 @@ SUPPORTED_NODE_VERSIONS = [
     "21",
     "22",
 ]
-
-
-def _get_command_version(cmd: str) -> str:
-    """Get version of a command."""
-    try:
-        raw_version = (
-            subprocess.run([cmd, "--version"], capture_output=True)
-            .stdout.decode()
-            .strip()
-        )
-    except FileNotFoundError:
-        raw_version = ""
-    return raw_version
-
-
-def check_node_version() -> str:
-    """Check if Node version is supported."""
-    raw_version = _get_command_version("node")
-    major_version = raw_version[1:3] if raw_version else ""
-    return (
-        ""
-        if major_version in SUPPORTED_NODE_VERSIONS
-        else f"Node version is not supported: Got {raw_version}"
-    )
-
-
-def check_git_version() -> str:
-    """Check if git is installed."""
-    raw_version = _get_command_version("git")
-    return "" if raw_version else "Git not found."
 
 
 def sanity_check() -> data.SanityCheckResults:
@@ -70,13 +41,18 @@ def main():
         sys.exit(1)
 
     check_results = sanity_check()
-    msg = "Creating a new Volto Addon"
+    msg = dedent("""
+        Creating a new Volto Addon
+
+        Sanity check results:
+
+    """)
     for check in check_results.checks:
         label = "green" if check.status else "red"
         msg = f"{msg}\n  - {check.name}: [{label}]{check.message}[/{label}]"
     console.panel(
-        title="Volto Addon",
-        msg=msg
+        title="Volto Addon Generator",
+        msg=f"{msg}\n"
     )
     if not check_results.status:
         sys.exit(1)

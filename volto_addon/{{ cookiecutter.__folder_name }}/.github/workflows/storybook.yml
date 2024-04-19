@@ -1,4 +1,4 @@
-name: i18n
+name: Storybook
 on:
   push:
     paths:
@@ -6,24 +6,27 @@ on:
       - "*.json"
       - "*.yaml"
       - "packages/**"
+      - ".github/workflows/storybook.yml"
 
 env:
-  NODE_VERSION: {{ cookiecutter.__version_gha_node }}
+  NODE_VERSION: {{ cookiecutter.__gha_version_node }}
+
+permissions:
+  contents: write
 
 jobs:
-  unit:
+  build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Main checkout
-        uses: actions/checkout@{{ cookiecutter.__version_gha_checkout }}
+      - name: Checkout
+        uses: actions/checkout@{{ cookiecutter.__gha_version_checkout }}
 
       - name: Use Node.js
-        uses: actions/setup-node@{{ cookiecutter.__version_gha_setup_node }}
+        uses: actions/setup-node@{{ cookiecutter.__gha_version_setup_node }}
         with:
           node-version: {{ "${{ env.NODE_VERSION }}" }}
 
-      - uses: pnpm/action-setup@{{ cookiecutter.__version_gha_pnpm_action_setup }}
+      - uses: pnpm/action-setup@{{ cookiecutter.__gha_version_pnpm_action_setup }}
         name: Install pnpm
         with:
           version: {{ cookiecutter.__version_pnpm_major }}
@@ -36,7 +39,7 @@ jobs:
         run: |
           echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
 
-      - uses: actions/cache@{{ cookiecutter.__version_gha_cache }}
+      - uses: actions/cache@{{ cookiecutter.__gha_version_cache }}
         name: Setup pnpm cache
         with:
           path: {{ "${{ env.STORE_PATH }}" }}
@@ -47,5 +50,13 @@ jobs:
       - name: Install dependencies
         run: make install
 
-      - name: test i18n command
-        run: make i18n
+      - name: Generate Storybook
+        run: |
+          make storybook-build
+
+      - name: Deploy to GitHub pages
+        uses: JamesIves/github-pages-deploy-action@{{ cookiecutter.__gha_version_pages_deploy }}
+        if: {{ "${{ github.ref == 'refs/heads/main' }}" }}
+        with:
+          branch: gh-pages
+          folder: .storybook-build

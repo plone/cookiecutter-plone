@@ -62,7 +62,7 @@ def test_creation(cookies, context: dict):
     result = cookies.bake(extra_context=context)
     assert result.exception is None
     assert result.exit_code == 0
-    assert result.project_path.name == context["addon_name"]
+    assert result.project_path.name == context["volto_addon_name"]
     assert result.project_path.is_dir()
 
 
@@ -90,7 +90,7 @@ def test_root_files_generated(cutter_result, file_path):
 @pytest.mark.parametrize("file_path", PKG_SRC_FILES)
 def test_pkg_src_files_generated(cutter_result, file_path: str):
     """Check if package files were generated."""
-    package_name = cutter_result.context["addon_name"]
+    package_name = cutter_result.context["volto_addon_name"]
     file_path = file_path.format(package_name=package_name)
     src_path = cutter_result.project_path / "packages" / package_name
     path = src_path / file_path
@@ -101,7 +101,7 @@ def test_pkg_src_files_generated(cutter_result, file_path: str):
 @pytest.mark.parametrize("file_path", PKG_SRC_FILES)
 def test_pkg_src_files_generated(cutter_result, file_path: str):
     """Check if package files were generated."""
-    package_name = cutter_result.context["addon_name"]
+    package_name = cutter_result.context["volto_addon_name"]
     file_path = file_path.format(package_name=package_name)
     src_path = cutter_result.project_path / "packages" / package_name
     path = src_path / file_path

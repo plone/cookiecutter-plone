@@ -16,8 +16,8 @@ def variable_pattern():
 def context() -> dict:
     """Cookiecutter context."""
     return {
-        "addon_name": "volto-addon",
-        "addon_title": "Volto Add-on",
+        "volto_addon_name": "volto-addon",
+        "title": "Volto Add-on",
         "description": "Add new features to your Volto Project.",
         "github_organization": "collective",
         "npm_package_name": "@plone-collective/volto-addon",
@@ -38,8 +38,8 @@ def context_no_npm_organization(context) -> dict:
 def bad_context() -> dict:
     """Cookiecutter context with invalid data."""
     return {
-        "addon_name": "volto addon",
-        "addon_title": "Volto Add-on",
+        "volto_addon_name": "volto addon",
+        "title": "Volto Add-on",
         "description": "Add new features to your Volto Project.",
         "github_organization": "collective",
         "npm_package_name": "plone-collective/volto-addon",

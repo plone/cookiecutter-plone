@@ -11,10 +11,10 @@
     "react"
   ],
   "author": "{{ cookiecutter.author }}",
-  "homepage": "https://github.com/{{ cookiecutter.github_organization }}/{{ cookiecutter.addon_name }}#readme",
+  "homepage": "https://github.com/{{ cookiecutter.github_organization }}/{{ cookiecutter.volto_addon_name }}#readme",
   "repository": {
     "type": "git",
-    "url": "git@github.com:{{ cookiecutter.github_organization }}/{{ cookiecutter.addon_name }}.git"
+    "url": "git@github.com:{{ cookiecutter.github_organization }}/{{ cookiecutter.volto_addon_name }}.git"
   },
   "publishConfig": {
     "access": "public"

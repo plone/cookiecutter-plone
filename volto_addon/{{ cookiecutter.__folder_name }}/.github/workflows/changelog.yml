@@ -6,14 +6,14 @@ on:
       - main
 
 env:
-  NODE_VERSION: {{ cookiecutter.__version_gha_node }}
-  ADDON_NAME: {{ cookiecutter.addon_name }}
+  NODE_VERSION: {{ cookiecutter.__gha_version_node }}
+  ADDON_NAME: {{ cookiecutter.volto_addon_name }}
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@{{ cookiecutter.__version_gha_checkout }}
+      - uses: actions/checkout@{{ cookiecutter.__gha_version_checkout }}
         with:
           # Fetch all history
           fetch-depth: '0'
@@ -22,11 +22,11 @@ jobs:
         run: pip install towncrier
 
       - name: Use Node.js
-        uses: actions/setup-node@{{ cookiecutter.__version_gha_setup_node }}
+        uses: actions/setup-node@{{ cookiecutter.__gha_version_setup_node }}
         with:
           node-version: {{ "${{ env.NODE_VERSION }}" }}
 
-      - uses: pnpm/action-setup@{{ cookiecutter.__version_gha_pnpm_action_setup }}
+      - uses: pnpm/action-setup@{{ cookiecutter.__gha_version_pnpm_action_setup }}
         name: Install pnpm
         with:
           version: {{ cookiecutter.__version_pnpm_major }}
@@ -39,7 +39,7 @@ jobs:
         run: |
           echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
 
-      - uses: actions/cache@{{ cookiecutter.__version_gha_cache }}
+      - uses: actions/cache@{{ cookiecutter.__gha_version_cache }}
         name: Setup pnpm cache
         with:
           path: {{ "${{ env.STORE_PATH }}" }}

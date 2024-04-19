@@ -1,11 +1,11 @@
-[![Cookiecutter Plone Add-on CI](https://github.com/plone/cookiecutter-volto/actions/workflows/plone_addon.yml/badge.svg)](https://github.com/plone/cookiecutter-volto/actions/workflows/plone_addon.yml)
-[![Built with Cookiecutter](https://img.shields.io/badge/built%20with-Cookiecutter-ff69b4.svg?logo=cookiecutter)](https://github.com/plone/cookiecutter-volto/)
-![GitHub](https://img.shields.io/github/license/plone/cookiecutter-volto)
+[![Cookiecutter Volto Add-on CI](https://github.com/plone/cookiecutter-plone/actions/workflows/volto_addon.yml/badge.svg)](https://github.com/plone/cookiecutter-plone/actions/workflows/volto_addon.yml)
+[![Built with Cookiecutter](https://img.shields.io/badge/built%20with-Cookiecutter-ff69b4.svg?logo=cookiecutter)](https://github.com/plone/cookiecutter-plone/)
+![GitHub](https://img.shields.io/github/license/plone/cookiecutter-plone)
 [![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
 # Cookiecutter Volto Add-on
 
-Powered by [Cookiecutter](https://github.com/cookiecutter/cookiecutter), [Cookiecutter Volto Add-on](https://github.com/plone/cookiecutter-volto/volto_addon) is intended to be used by Plone developers to create new add-on packages for Volto.
+Powered by [Cookiecutter](https://github.com/cookiecutter/cookiecutter), [Cookiecutter Volto Add-on](https://github.com/plone/cookiecutter-plone/volto_addon) is intended to be used by Plone developers to create new add-on packages for Volto.
 
 ## Getting Started 🏁
 
@@ -34,8 +34,8 @@ These are all the template options that will be prompted by the [Cookiecutter CL
 
 | Option                | Description                                                                                                                                          | Example                       |
 | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
-| `addon_name`  | Your addon's short name.                                                                                     | **volto-weather-block**                |
-| `addon_title`  | Your addon's human-readable name, capitals and spaces allowed.                                                                                     | **Weather Block for Volto**                |
+| `volto_addon_name`  | Your addon's short name.                                                                                     | **volto-weather-block**                |
+| `title`  | Your addon's human-readable name, capitals and spaces allowed.                                                                                     | **Weather Block for Volto**                |
 | `description`         | Describes your add-on and gets used in places like ``README.md`` and such.                                                                          | **Add a weather block to your site.** |
 | `author`              | This is you! The value goes into places like ``LICENSE``, ``package.json`` and such.                                                                     | **Our Company**               |
 | `email`               | The email address you want to identify yourself in the project.                                                                                      | **email@example.com**         |

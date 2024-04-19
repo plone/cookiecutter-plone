@@ -5,11 +5,11 @@ from cookieplone.utils import console
 def main():
     """Final fixes."""
     msg = """
-        [bold blue]{{ cookiecutter.addon_name }}[/bold blue]
+        [bold blue]{{ cookiecutter.volto_addon_name }}[/bold blue]
 
         Now, enter the generated directory and finish the install:
 
-        cd {{ cookiecutter.addon_name }}
+        cd {{ cookiecutter.volto_addon_name }}
         make install
 
         start coding, and push to your organization.
@@ -18,7 +18,7 @@ def main():
         The Plone Community.
     """
     console.panel(
-        title="New addon was generated",
+        title=":tada: New addon was generated :tada:",
         subtitle="",
         msg=msg,
         url="https://plone.org/"
