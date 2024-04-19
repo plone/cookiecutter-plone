@@ -13,7 +13,7 @@ long_description = f"""
 
 setup(
     name="{{ cookiecutter.python_package_name }}",
-    version="1.0.0a1",
+    version="{{ cookiecutter.__version_package }}",
     description="{{ cookiecutter.description }}.",
     long_description=long_description,
     long_description_content_type="text/markdown",

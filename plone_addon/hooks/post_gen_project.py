@@ -3,7 +3,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from cookieplone.utils import console, rmtree
+from cookieplone.utils import console, files
 
 # PATH OF CONTENT TO BE REMOVED
 TO_REMOVE_PATHS = {
@@ -26,13 +26,8 @@ def remove_files(category: str):
     package_namespace = "{{ cookiecutter.__package_namespace }}"
     package_name = "{{ cookiecutter.__package_name }}"
     base_path = Path("src") / package_namespace / package_name
-    for filepath in to_remove:
-        path = base_path / filepath
-        exists = path.exists()
-        if exists and path.is_dir():
-            rmtree(path)
-        elif exists and path.is_file():
-            path.unlink()
+    # Remove all files
+    files.remove_files(base_path, to_remove)
 
 
 def initialize_git():
@@ -57,7 +52,7 @@ def main():
         remove_files("feature_headless")
     initialize_git()
     msg = """
-        [bold blue]{{ cookiecutter.addon_title }}[/bold blue]
+        [bold blue]{{ cookiecutter.title }}[/bold blue]
 
         Now, enter the repositorym run the code formatter with:
 

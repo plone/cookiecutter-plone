@@ -33,7 +33,7 @@ These are all the template options that will be prompted by the [Cookiecutter CL
 
 | Option                | Description                                                                                                                                          | Example                       |
 | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
-| `addon_title`  | Your addon's human-readable name, capitals and spaces allowed.                                                                                     | **Plone Blog**                |
+| `title`  | Your addon's human-readable name, capitals and spaces allowed.                                                                                     | **Plone Blog**                |
 | `description`         | Describes your addon and gets used in places like ``README.md`` and such.                                                                          | **Create awesome blogs with Plone.** |
 | `author`              | This is you! The value goes into places like ``LICENSE``, ``setup.py`` and such.                                                                     | **Our Company**               |
 | `email`               | The email address you want to identify yourself in the project.                                                                                      | **email@example.com**         |
