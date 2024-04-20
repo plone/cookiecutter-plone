@@ -1,7 +1,8 @@
-from datetime import datetime
-from git import Repo
 import json
+from datetime import date
 from pathlib import Path
+
+from git import Repo
 
 cwd = Path().cwd()
 reports = cwd / ".reports"
@@ -9,7 +10,7 @@ reports = cwd / ".reports"
 repo = Repo(cwd)
 last_commit = repo.head.commit
 
-report_filename = f"{datetime.now().isoformat()}-{last_commit.hexsha[:7]}-report.csv"
+report_filename = f"{date.today()}-{last_commit.hexsha[:7]}-report.csv"
 
 folders = ["plone_addon", "project", "volto_addon", "sub_cache", "sub_policy_package"]
 ignore = ["__prompts__", "_copy_without_render", "_extensions"]

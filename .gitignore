@@ -7,4 +7,5 @@ pip-selfcheck.json
 collective.plonedistribution
 .pytest_cache
 .reports/*.csv
+.reports/*.json
 */__pycache__/

@@ -48,3 +48,8 @@ test: bin/cookieplone ## Test all cookiecutters
 report-context: bin/cookieplone ## Generate a report of all context options
 	@echo "$(GREEN)==> Generate a report of all context options$(RESET)"
 	bin/python .scripts/report_context.py
+
+.PHONY: report-keys-usage
+report-keys-usage: bin/cookieplone ## Generate a report of usage of context keys
+	@echo "$(GREEN)==> Generate a report of usage of context keys$(RESET)"
+	bin/python .scripts/report_keys_usage.py
