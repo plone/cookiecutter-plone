@@ -1,4 +1,5 @@
 """Pytest configuration."""
+
 import re
 from copy import deepcopy
 from pathlib import Path
@@ -73,7 +74,7 @@ def variable_pattern():
 def context() -> dict:
     """Cookiecutter context."""
     return {
-        "addon_title": "Addon",
+        "title": "Addon",
         "description": "A Tech blog.",
         "github_organization": "collective",
         "python_package_name": "collective.addon",
@@ -96,7 +97,7 @@ def context_no_headless(context) -> dict:
 def bad_context() -> dict:
     """Cookiecutter context with invalid data."""
     return {
-        "addon_title": "Addon",
+        "title": "Addon",
         "description": "A Tech blog.",
         "github_organization": "collective",
         "python_package_name": "collective_addon",

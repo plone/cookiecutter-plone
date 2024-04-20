@@ -1,9 +1,19 @@
 {
   "templates": {
-    "addon": {
+    "project": {
+      "path": "./project",
+      "title": "Plone Project",
+      "description": "Create a new Plone project with backend and frontend"
+    },
+    "plone_addon": {
       "path": "./plone_addon",
       "title": "Plone Add-on",
       "description": "Create a new Python Package for a Plone Add-on"
+    },
+    "volto_addon": {
+      "path": "./volto_addon",
+      "title": "Volto Add-on",
+      "description": "Create a new Volto Add-on"
     }
   }
 }
